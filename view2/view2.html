@@ -1,0 +1,51 @@
+<p>This is the partial for view 2.</p>
+<p>
+  Showing of 'interpolate' filter:
+  {{ 'Current version is v%VERSION%.' | interpolate }}
+</p>
+
+<div class="row" ng-controller="View2Ctrl">
+
+  <div class="col-md-4">
+    <div class="well">
+
+      <div class="form-group row">
+        <label for="actionText">Action:</label>
+        <input id="actionText" class="form-control" ng-model="task.action" />
+      </div>
+
+      <div class="form-group row">
+        <label for="actionPriority">Priority:</label>
+        <select id="actionPriority" class="form-control" ng-model="task.priority">
+          <option>High</option>
+          <option>Normal</option>
+          <option>Low</option>
+        </select>
+      </div>
+      <button class="btn btn-primary btn-block" ng-click="addTask(task)">Add</button>
+    </div>
+  </div>
+
+  <div class="col-md-8 panel-primary">
+    <div class="panel-heading">
+      <div class="panel-title">
+        <h3>
+          Task name
+                        <span class="label label-info">
+                            {{(tasks | filter : {complete : 'false'} ).length}}
+                        </span>
+        </h3>
+      </div>
+    </div>
+
+    <table class="table">
+      <tbody>
+      <tr ng-repeat="task in tasks">
+        <td>{{task.action}}</td>
+        <td>{{task.priority}}</td>
+        <td><input type="checkbox" ng-model="task.complete" /></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
